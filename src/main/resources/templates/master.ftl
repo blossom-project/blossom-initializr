@@ -14,6 +14,7 @@
   <link href="/css/bootstrap.min.css" rel="stylesheet">
   <link href="/css/style.css" rel="stylesheet">
   <link href="/font-awesome/css/font-awesome.css" rel="stylesheet">
+  <link href="/font-mfizz/font-mfizz.css" rel="stylesheet">
   <link href="/css/plugins/codemirror/codemirror.css" rel="stylesheet">
   <link href="/css/plugins/codemirror/ambiance.css" rel="stylesheet">
 

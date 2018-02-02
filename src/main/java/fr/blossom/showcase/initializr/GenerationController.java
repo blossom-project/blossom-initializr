@@ -34,7 +34,7 @@ public class GenerationController {
       .setSize(0)
       .addAggregation(
         AggregationBuilders.global("global")
-          .subAggregation(AggregationBuilders.dateHistogram("histogram").field("timestamp").interval(DateHistogramInterval.MINUTE))
+          .subAggregation(AggregationBuilders.dateHistogram("histogram").field("timestamp").interval(DateHistogramInterval.DAY).format("dd/MM/yyyy"))
           .subAggregation(AggregationBuilders.terms("packagingMode").field("packagingMode"))
           .subAggregation(AggregationBuilders.terms("sourceLanguage").field("sourceLanguage"))
           .subAggregation(AggregationBuilders.terms("dependencies").field("dependencies"))
