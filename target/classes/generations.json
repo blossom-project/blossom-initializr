@@ -1,0 +1,59 @@
+{
+  "settings": {
+    "index": {
+      "creation_date": "1517584193872",
+      "number_of_shards": "10",
+      "number_of_replicas": "0",
+      "uuid": "SDHsPZ9DSdmZw6b9xt3IXQ",
+      "version": {
+        "created": "2040699"
+      }
+    }
+  },"mappings": {
+  "generation": {
+    "properties": {
+      "artifactId": {
+        "type": "string",
+        "index":"not_analyzed"
+      },
+      "dependencies": {
+        "type": "string",
+        "index":"not_analyzed"
+      },
+      "description": {
+        "type": "string",
+        "index":"not_analyzed"
+      },
+      "groupId": {
+        "type": "string",
+        "index":"not_analyzed"
+      },
+      "name": {
+        "type": "string",
+        "index":"not_analyzed"
+      },
+      "packageName": {
+        "type": "string",
+        "index":"not_analyzed"
+      },
+      "packagingMode": {
+        "type": "string",
+        "index":"not_analyzed"
+      },
+      "sourceLanguage": {
+        "type": "string",
+        "index":"not_analyzed"
+      },
+      "timestamp": {
+        "type": "date",
+        "format":"epoch_millis"
+      },
+      "version": {
+        "type": "string",
+        "index":"not_analyzed"
+      }
+    }
+  }
+}
+
+}
