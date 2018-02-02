@@ -30,79 +30,88 @@
   <div class="row">
     <div class="col-lg-3">
       <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Favorites dependencies</h5>
+        </div>
         <div class="ibox-content p-sm">
           <ul id="top_dependencies" class="list-group clear-list">
           </ul>
         </div>
       </div>
-
     </div>
     <div class="col-lg-9">
-      <div class="row">
-        <div class="col-lg-4">
-          <div class="widget style1 navy-bg">
-            <div class="row vertical-align">
-              <div class="col-xs-6">
-                <i class="fa icon-java-bold fa-3x"></i> <br/>
-                <span class="small">(java)</span>
-              </div>
-              <div class="col-xs-6 text-right">
-                <h2 class="font-bold" id="sourceLanguage_JAVA">0</h2>
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Formats and languages</h5>
+        </div>
+        <div class="ibox-content p-sm">
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="widget style1 navy-bg">
+                <div class="row vertical-align">
+                  <div class="col-xs-6">
+                    <i class="fa icon-java-bold fa-3x"></i> <br/>
+                    <span class="small">(java)</span>
+                  </div>
+                  <div class="col-xs-6 text-right">
+                    <h2 class="font-bold" id="sourceLanguage_JAVA">0</h2>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="widget style1 navy-bg">
-            <div class="row vertical-align">
-              <div class="col-xs-6">
+            <div class="col-lg-4">
+              <div class="widget style1 navy-bg">
+                <div class="row vertical-align">
+                  <div class="col-xs-6">
                 <span><i class="fa icon-java-bold fa-3x"></i><i
                   class="fa icon-script fa-3x"></i></span><br/>
-                <span class="small">(java+kotlin)</span>
+                    <span class="small">(java+kotlin)</span>
+                  </div>
+                  <div class="col-xs-6 text-right">
+                    <h2 class="font-bold" id="sourceLanguage_JAVA_KOTLIN">0</h2>
+                  </div>
+                </div>
               </div>
-              <div class="col-xs-6 text-right">
-                <h2 class="font-bold" id="sourceLanguage_JAVA_KOTLIN">0</h2>
+            </div>
+            <div class="col-lg-4">
+              <div class="widget style1 navy-bg">
+                <div class="row vertical-align">
+                  <div class="col-xs-3">
+                    <i class="fa icon-script fa-3x"></i><br/>
+                    <span class="small">(kotlin)</span>
+                  </div>
+                  <div class="col-xs-9 text-right">
+                    <h2 class="font-bold" id="sourceLanguage_KOTLIN">0</h2>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="widget style1 navy-bg">
-            <div class="row vertical-align">
-              <div class="col-xs-3">
-                <i class="fa icon-script fa-3x"></i><br/>
-                <span class="small">(kotlin)</span>
-              </div>
-              <div class="col-xs-9 text-right">
-                <h2 class="font-bold" id="sourceLanguage_KOTLIN">0</h2>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-6">
-          <div class="widget style1 red-bg">
-            <div class="row vertical-align">
-              <div class="col-xs-3">
-                <i class="fa fa-archive fa-3x"></i><br/>
-                <span class="small">(jar)</span>
-              </div>
-              <div class="col-xs-9 text-right">
-                <h2 class="font-bold" id="packagingMode_JAR">0</h2>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="widget style1 red-bg">
+                <div class="row vertical-align">
+                  <div class="col-xs-3">
+                    <i class="fa fa-archive fa-3x"></i><br/>
+                    <span class="small">(jar)</span>
+                  </div>
+                  <div class="col-xs-9 text-right">
+                    <h2 class="font-bold" id="packagingMode_JAR">0</h2>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="widget style1 red-bg">
-            <div class="row vertical-align">
-              <div class="col-xs-3">
-                <i class="fa icon-tomcat fa-3x"></i><br/>
-                <span class="small">(war)</span>
-              </div>
-              <div class="col-xs-9 text-right">
-                <h2 class="font-bold" id="packagingMode_WAR">0</h2>
+            <div class="col-lg-6">
+              <div class="widget style1 red-bg">
+                <div class="row vertical-align">
+                  <div class="col-xs-3">
+                    <i class="fa icon-tomcat fa-3x"></i><br/>
+                    <span class="small">(war)</span>
+                  </div>
+                  <div class="col-xs-9 text-right">
+                    <h2 class="font-bold" id="packagingMode_WAR">0</h2>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -110,9 +119,19 @@
       </div>
     </div>
   </div>
+
   <div class="row">
     <div class="col-lg-12">
-      <div id="generation-histogram"></div>
+
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Generations by day</h5>
+        </div>
+        <div class="ibox-content p-sm">
+          <div id="generation-histogram"></div>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 
