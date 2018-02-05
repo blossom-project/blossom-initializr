@@ -1,8 +1,22 @@
 package fr.blossom.showcase.initializr.model;
 
-import com.squareup.kotlinpoet.*;
-import com.sun.codemodel.*;
+import static fr.blossom.showcase.initializr.model.PACKAGING_MODE.WAR;
+
+import com.squareup.kotlinpoet.AnnotationSpec;
+import com.squareup.kotlinpoet.ClassName;
+import com.squareup.kotlinpoet.FileSpec;
+import com.squareup.kotlinpoet.FunSpec;
+import com.squareup.kotlinpoet.KModifier;
+import com.squareup.kotlinpoet.ParameterSpec;
+import com.squareup.kotlinpoet.TypeSpec;
 import com.sun.codemodel.CodeWriter;
+import com.sun.codemodel.JClassAlreadyExistsException;
+import com.sun.codemodel.JCodeModel;
+import com.sun.codemodel.JDefinedClass;
+import com.sun.codemodel.JMethod;
+import com.sun.codemodel.JMod;
+import com.sun.codemodel.JPackage;
+import com.sun.codemodel.JVar;
 import java.io.FilterOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -14,7 +28,11 @@ import java.util.Properties;
 import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
-import org.apache.maven.model.*;
+import org.apache.maven.model.Build;
+import org.apache.maven.model.DependencyManagement;
+import org.apache.maven.model.Model;
+import org.apache.maven.model.Plugin;
+import org.apache.maven.model.PluginExecution;
 import org.apache.maven.model.io.xpp3.MavenXpp3Writer;
 import org.apache.tomcat.util.http.fileupload.util.Streams;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
@@ -116,8 +134,8 @@ public class ProjectGenerator {
         .collect(Collectors.toList())
     );
 
-    if (PACKAGING_MODE.WAR.equals(projectConfiguration.getPackagingMode())) {
-      model.setPackaging(PACKAGING_MODE.WAR.name().toLowerCase());
+    if (WAR.equals(projectConfiguration.getPackagingMode())) {
+      model.setPackaging(WAR.name().toLowerCase());
       properties.put("start.class", projectConfiguration.getPackageName() + ".Application");
       org.apache.maven.model.Dependency providedTomcat = new org.apache.maven.model.Dependency();
       providedTomcat.setGroupId("org.springframework.boot");
@@ -170,6 +188,20 @@ public class ProjectGenerator {
 
     plugin.addExecution(bootPluginExecution);
     build.addPlugin(plugin);
+
+    if (projectConfiguration.getPackagingMode() == WAR) {
+      Plugin warPlugin = new Plugin();
+      warPlugin.setArtifactId("maven-war-plugin");
+
+      Xpp3Dom warConfiguration = new Xpp3Dom("configuration");
+      Xpp3Dom failOnMissingWebXml = new Xpp3Dom("failOnMissingWebXml");
+      failOnMissingWebXml.setValue(Boolean.FALSE.toString());
+      warConfiguration.addChild(failOnMissingWebXml);
+      warPlugin.setConfiguration(warConfiguration);
+
+      build.addPlugin(warPlugin);
+    }
+
 
     model.setBuild(build);
 
@@ -325,7 +357,7 @@ public class ProjectGenerator {
     JDefinedClass clazz = jc._class(projectConfiguration.getPackageName() + ".Application");
 
     clazz.annotate(SpringBootApplication.class);
-    if (PACKAGING_MODE.WAR.equals(projectConfiguration.getPackagingMode())) {
+    if (WAR.equals(projectConfiguration.getPackagingMode())) {
       clazz._extends(SpringBootServletInitializer.class);
       JMethod configure = clazz.method(JMod.PROTECTED, SpringApplicationBuilder.class, "configure");
       configure.annotate(jc.ref(Override.class));
@@ -343,12 +375,13 @@ public class ProjectGenerator {
     jc.build(new CustomZipCodeWriter(zos));
   }
 
-  private void appendKotlinMain(ProjectConfiguration projectConfiguration, ZipOutputStream zos) throws IOException {
+  private void appendKotlinMain(ProjectConfiguration projectConfiguration, ZipOutputStream zos)
+    throws IOException {
     TypeSpec.Builder applicationClassBuilder = TypeSpec.classBuilder("Application")
       .addAnnotation(AnnotationSpec.builder(SpringBootApplication.class).build())
       .addModifiers(KModifier.OPEN);
 
-    if (projectConfiguration.getPackagingMode() == PACKAGING_MODE.WAR) {
+    if (projectConfiguration.getPackagingMode() == WAR) {
       applicationClassBuilder.superclass(SpringBootServletInitializer.class);
 
       FunSpec configure = FunSpec
@@ -373,7 +406,8 @@ public class ProjectGenerator {
       .addFunction(mainFun)
       .build();
 
-    String name = "src/main/kotlin/" + toDirName(projectConfiguration.getPackageName()) + "Application.kt";
+    String name =
+      "src/main/kotlin/" + toDirName(projectConfiguration.getPackageName()) + "Application.kt";
     zos.putNextEntry(new ZipEntry(name));
 
     String fileContent = file.toString();
