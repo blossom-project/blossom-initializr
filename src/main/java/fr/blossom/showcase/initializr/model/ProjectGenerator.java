@@ -103,6 +103,8 @@ public class ProjectGenerator {
     properties.put("project.build.sourceEncoding", "UTF-8");
     properties.put("project.reporting.outputEncoding", "UTF-8");
     properties.put("java.version", "1.8");
+    properties.put("maven.compiler.source", "1.8");
+    properties.put("maven.compiler.target", "1.8");
     properties.put("springboot.version", version.getSpringboot());
     properties.put("blossom.version", version.getBlossom());
     model.setProperties(properties);
