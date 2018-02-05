@@ -25,15 +25,23 @@ initializr:
           description: Blossom UI Api starter (Back-office)
           groupId: fr.blossom
           artifactId: blossom-starter-ui-api
-    - name: Miscellanous
-      description: Blossom modules to add some functionnality in your application !
+    - name: Utilities
+      description: Blossom modules to add some utility features to Blossom
       dependencies:
-        - name: Blossom File Manager
+        - name: Business Process Manager
+          id: blossom-starter-filemanager
+          description: Add a Business Process Manager to Blossom (Camunda)
+          groupId: fr.blossom
+          artifactId: blossom-starter-bpmn
+    - name: Functionnalities
+      description: Blossom modules to add some functionnality to your app'
+      dependencies:
+        - name: File Manager
           id: blossom-starter-filemanager
           description: File storing and serving feature and tools
           groupId: fr.blossom
           artifactId: blossom-starter-filemanager
-        - name: Blossom Articles
+        - name: Articles
           id: blossom-starter-articles
           description: Richtext articles and front serving
           groupId: fr.blossom
