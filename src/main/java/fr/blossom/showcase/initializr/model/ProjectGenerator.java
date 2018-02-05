@@ -195,6 +195,12 @@ public class ProjectGenerator {
     kotlinDependency.setArtifactId("kotlin-stdlib");
     kotlinDependency.setVersion("${kotlin.version}");
     pomModel.getDependencies().add(kotlinDependency);
+
+    org.apache.maven.model.Dependency kotlinReflectDependency = new org.apache.maven.model.Dependency();
+    kotlinReflectDependency.setGroupId("org.jetbrains.kotlin");
+    kotlinReflectDependency.setArtifactId("kotlin-reflect");
+    kotlinReflectDependency.setVersion("${kotlin.version}");
+    pomModel.getDependencies().add(kotlinReflectDependency);
   }
 
   private void addMixedJavaKotlinConfiguration(Model pomModel, String kotlinVersion) {
