@@ -1,6 +1,4 @@
-package fr.blossom.showcase.initializr.model;
-
-import static fr.blossom.showcase.initializr.model.PACKAGING_MODE.WAR;
+package com.blossom_project.showcase.initializr.model;
 
 import com.squareup.kotlinpoet.AnnotationSpec;
 import com.squareup.kotlinpoet.ClassName;
@@ -110,7 +108,7 @@ public class ProjectGenerator {
     model.setProperties(properties);
 
     org.apache.maven.model.Dependency blossomBom = new org.apache.maven.model.Dependency();
-    blossomBom.setGroupId("fr.blossom");
+    blossomBom.setGroupId("com.blossom_project");
     blossomBom.setArtifactId("blossom-parent");
     blossomBom.setVersion("${blossom.version}");
     blossomBom.setScope("import");
@@ -136,8 +134,8 @@ public class ProjectGenerator {
         .collect(Collectors.toList())
     );
 
-    if (WAR.equals(projectConfiguration.getPackagingMode())) {
-      model.setPackaging(WAR.name().toLowerCase());
+    if (PACKAGING_MODE.WAR.equals(projectConfiguration.getPackagingMode())) {
+      model.setPackaging(PACKAGING_MODE.WAR.name().toLowerCase());
       properties.put("start.class", projectConfiguration.getPackageName() + ".Application");
       org.apache.maven.model.Dependency providedTomcat = new org.apache.maven.model.Dependency();
       providedTomcat.setGroupId("org.springframework.boot");
@@ -191,7 +189,7 @@ public class ProjectGenerator {
     plugin.addExecution(bootPluginExecution);
     build.addPlugin(plugin);
 
-    if (projectConfiguration.getPackagingMode() == WAR) {
+    if (projectConfiguration.getPackagingMode() == PACKAGING_MODE.WAR) {
       Plugin warPlugin = new Plugin();
       warPlugin.setArtifactId("maven-war-plugin");
 
@@ -359,7 +357,7 @@ public class ProjectGenerator {
     JDefinedClass clazz = jc._class(projectConfiguration.getPackageName() + ".Application");
 
     clazz.annotate(SpringBootApplication.class);
-    if (WAR.equals(projectConfiguration.getPackagingMode())) {
+    if (PACKAGING_MODE.WAR.equals(projectConfiguration.getPackagingMode())) {
       clazz._extends(SpringBootServletInitializer.class);
       JMethod configure = clazz.method(JMod.PROTECTED, SpringApplicationBuilder.class, "configure");
       configure.annotate(jc.ref(Override.class));
@@ -383,7 +381,7 @@ public class ProjectGenerator {
       .addAnnotation(AnnotationSpec.builder(SpringBootApplication.class).build())
       .addModifiers(KModifier.OPEN);
 
-    if (projectConfiguration.getPackagingMode() == WAR) {
+    if (projectConfiguration.getPackagingMode() == PACKAGING_MODE.WAR) {
       applicationClassBuilder.superclass(SpringBootServletInitializer.class);
 
       FunSpec configure = FunSpec

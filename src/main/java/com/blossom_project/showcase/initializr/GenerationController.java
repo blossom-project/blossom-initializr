@@ -1,8 +1,8 @@
-package fr.blossom.showcase.initializr;
+package com.blossom_project.showcase.initializr;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-import fr.blossom.ui.stereotype.BlossomController;
+import com.blossom_project.ui.stereotype.BlossomController;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.aggregations.AggregationBuilders;

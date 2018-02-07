@@ -1,4 +1,4 @@
-package fr.blossom.showcase.initializr.model;
+package com.blossom_project.showcase.initializr.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
