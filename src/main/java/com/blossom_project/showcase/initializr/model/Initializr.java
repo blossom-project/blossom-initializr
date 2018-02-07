@@ -1,4 +1,4 @@
-package fr.blossom.showcase.initializr.model;
+package com.blossom_project.showcase.initializr.model;
 
 import java.util.List;
 import java.util.Optional;

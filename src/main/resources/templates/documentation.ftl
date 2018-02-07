@@ -97,7 +97,7 @@
               <h4 class="m-t-lg">Events</h4>
               <div class="row">
                 <div class="col-lg-12">
-                  <p>Services extending <code>fr.blossom.core.common.service.GenericCrudServiceImpl</code> or <code>fr.blossom.core.common.service.GenericAssociationServiceImpl</code> benefit from automatic event broadcasting.</p>
+                  <p>Services extending <code>com.blossom_project.core.common.service.GenericCrudServiceImpl</code> or <code>com.blossom_project.core.common.service.GenericAssociationServiceImpl</code> benefit from automatic event broadcasting.</p>
                   <p>Theses event types depends on the method called, and contains informations about the DTO being created, modified, deleted, associated, etc. </p>
                   <p>Some events are sent before and after the operation.</p>
                   <div class="b-r-xl p-xs bg-warning m-l-md m-r-md m-t-md m-b-md">
@@ -106,7 +106,7 @@
                         Use the constructor provided <code>ApplicationEventPublisher</code> locally to send your own events.
                       </span>
                   </div>
-                  <p>The event all extend <code>fr.blossom.core.common.event.Event</code> and blossom provides predefined event for handling with DTO lifecycle.</p>
+                  <p>The event all extend <code>com.blossom_project.core.common.event.Event</code> and blossom provides predefined event for handling with DTO lifecycle.</p>
                   <p>Application specific events can be created and handled following. <a href="https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html#context-functionality-events" target="_blank">See more on Spring documentation here</a>.</p>
                 </div>
               </div>

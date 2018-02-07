@@ -1,4 +1,4 @@
-package fr.blossom.showcase.documentation;
+package com.blossom_project.showcase.documentation;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
