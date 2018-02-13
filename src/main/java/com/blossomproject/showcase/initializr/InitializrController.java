@@ -1,12 +1,12 @@
-package com.blossom_project.showcase.initializr;
+package com.blossomproject.showcase.initializr;
 
-import com.blossom_project.showcase.initializr.model.PACKAGING_MODE;
-import com.blossom_project.showcase.initializr.model.ProjectConfiguration;
-import com.blossom_project.showcase.initializr.model.SOURCE_LANGUAGE;
+import com.blossomproject.showcase.initializr.model.PACKAGING_MODE;
+import com.blossomproject.showcase.initializr.model.ProjectConfiguration;
+import com.blossomproject.showcase.initializr.model.SOURCE_LANGUAGE;
+import com.blossomproject.showcase.initializr.model.ProjectGenerator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.blossom_project.showcase.initializr.model.Initializr;
-import com.blossom_project.showcase.initializr.model.ProjectGenerator;
+import com.blossomproject.showcase.initializr.model.Initializr;
 import javax.servlet.http.HttpServletResponse;
 import org.elasticsearch.action.bulk.BulkProcessor;
 import org.elasticsearch.action.index.IndexRequest;

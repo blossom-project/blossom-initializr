@@ -1,4 +1,4 @@
-package com.blossom_project.showcase.initializr.model;
+package com.blossomproject.showcase.initializr.model;
 
 public enum SOURCE_LANGUAGE {
   JAVA("Java", true),

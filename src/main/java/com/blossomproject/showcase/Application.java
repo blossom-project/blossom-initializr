@@ -1,11 +1,11 @@
 
-package com.blossom_project.showcase;
+package com.blossomproject.showcase;
 
+import com.blossomproject.showcase.initializr.model.Initializr;
+import com.blossomproject.showcase.initializr.model.ProjectGenerator;
 import com.google.common.io.Resources;
-import com.blossom_project.showcase.initializr.model.Initializr;
-import com.blossom_project.showcase.initializr.model.ProjectGenerator;
-import com.blossom_project.ui.menu.MenuItem;
-import com.blossom_project.ui.menu.MenuItemBuilder;
+import com.blossomproject.ui.menu.MenuItem;
+import com.blossomproject.ui.menu.MenuItemBuilder;
 import org.elasticsearch.client.Client;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

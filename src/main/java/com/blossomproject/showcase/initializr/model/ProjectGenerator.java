@@ -1,4 +1,4 @@
-package com.blossom_project.showcase.initializr.model;
+package com.blossomproject.showcase.initializr.model;
 
 import com.squareup.kotlinpoet.AnnotationSpec;
 import com.squareup.kotlinpoet.ClassName;
@@ -108,7 +108,7 @@ public class ProjectGenerator {
     model.setProperties(properties);
 
     org.apache.maven.model.Dependency blossomBom = new org.apache.maven.model.Dependency();
-    blossomBom.setGroupId("com.blossom_project");
+    blossomBom.setGroupId("com.blossomproject");
     blossomBom.setArtifactId("blossom-parent");
     blossomBom.setVersion("${blossom.version}");
     blossomBom.setScope("import");
