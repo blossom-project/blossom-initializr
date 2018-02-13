@@ -108,7 +108,7 @@ public class ProjectGenerator {
     model.setProperties(properties);
 
     org.apache.maven.model.Dependency blossomBom = new org.apache.maven.model.Dependency();
-    blossomBom.setGroupId("com.blossomproject");
+    blossomBom.setGroupId("com.blossom-project");
     blossomBom.setArtifactId("blossom-parent");
     blossomBom.setVersion("${blossom.version}");
     blossomBom.setScope("import");
