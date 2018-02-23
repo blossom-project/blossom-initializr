@@ -143,10 +143,9 @@
 
 <script>
   $(document).ready(function () {
+    var barChart = null;
     var updateCharts = function () {
       $.get("/blossom/generations/stats", function (data) {
-        console.log(data);
-
         updateWidgetFromAggregation("packagingMode", data.aggregations.global.packagingMode);
         updateWidgetFromAggregation("sourceLanguage", data.aggregations.global.sourceLanguage);
         updateTopDependencies(data.aggregations.global.dependencies);
@@ -171,16 +170,20 @@
     };
 
     var updateBarChart = function (result) {
-      Morris.Bar({
-        element: 'generation-histogram',
-        data: result.buckets,
-        xkey: 'key_as_string',
-        ykeys: ['doc_count'],
-        labels: ['Generations'],
-        hideHover: 'auto',
-        resize: true,
-        barColors: ['#1ab394'],
-      });
+      if (barChart) {
+        barChart.setData(result.buckets);
+      } else {
+        barChart = Morris.Bar({
+          element: 'generation-histogram',
+          data: result.buckets,
+          xkey: 'key_as_string',
+          ykeys: ['doc_count'],
+          labels: ['Generations'],
+          hideHover: 'auto',
+          resize: true,
+          barColors: ['#1ab394'],
+        });
+      }
     };
 
     setInterval(updateCharts, 60000);
