@@ -18,7 +18,7 @@ initializr:
         - name: Blossom UI Web
           id: blossom-starter-ui-web
           description: Blossom UI Web starter (Back-office)
-          groupId: com.blossomproject
+          groupId: com.blossom-project
           artifactId: blossom-starter-ui-web
         - name: Blossom UI Api
           id: blossom-starter-ui-api
