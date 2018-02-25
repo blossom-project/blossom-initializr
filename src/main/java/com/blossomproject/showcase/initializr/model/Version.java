@@ -7,6 +7,7 @@ public class Version {
   private String blossom;
   private String springboot;
   private String kotlin;
+  private String mavenWarPlugin;
 
   public String getBlossom() {
     return blossom;
@@ -30,5 +31,13 @@ public class Version {
 
   public void setKotlin(String kotlin) {
     this.kotlin = kotlin;
+  }
+
+  public String getMavenWarPlugin() {
+    return mavenWarPlugin;
+  }
+
+  public void setMavenWarPlugin(String mavenWarPlugin) {
+    this.mavenWarPlugin = mavenWarPlugin;
   }
 }
