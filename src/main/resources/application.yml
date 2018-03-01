@@ -3,6 +3,7 @@ initializr:
     - blossom: 1.0.0-SNAPSHOT
       springboot: 2.0.0.RELEASE
       kotlin: 1.2.21
+      maven-war-plugin: 3.2.0
   groups:
     - name: Core
       description: Blossom core functionalities
@@ -18,7 +19,7 @@ initializr:
         - name: Blossom UI Web
           id: blossom-starter-ui-web
           description: Blossom UI Web starter (Back-office)
-          groupId: com.blossomproject
+          groupId: com.blossom-project
           artifactId: blossom-starter-ui-web
         - name: Blossom UI Api
           id: blossom-starter-ui-api

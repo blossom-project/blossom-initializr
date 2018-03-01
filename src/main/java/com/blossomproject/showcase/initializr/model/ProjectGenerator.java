@@ -192,12 +192,7 @@ public class ProjectGenerator {
     if (projectConfiguration.getPackagingMode() == PACKAGING_MODE.WAR) {
       Plugin warPlugin = new Plugin();
       warPlugin.setArtifactId("maven-war-plugin");
-
-      Xpp3Dom warConfiguration = new Xpp3Dom("configuration");
-      Xpp3Dom failOnMissingWebXml = new Xpp3Dom("failOnMissingWebXml");
-      failOnMissingWebXml.setValue(Boolean.FALSE.toString());
-      warConfiguration.addChild(failOnMissingWebXml);
-      warPlugin.setConfiguration(warConfiguration);
+      warPlugin.setVersion(version.getMavenWarPlugin());
 
       build.addPlugin(warPlugin);
     }
