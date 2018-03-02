@@ -41,7 +41,7 @@
         <li>
           Generate your application
           <ol>
-            <li>Go to <a href="http://www.blossom-project.com/initializr" target="_blank">the initializr</a></li>
+            <li>Go to <a href="/initializr" target="_blank">the initializr</a></li>
             <li>Choose the modules you want and generate your app' !</li>
           </ol>
         </li>
