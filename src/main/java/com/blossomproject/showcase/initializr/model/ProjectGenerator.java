@@ -66,6 +66,7 @@ public class ProjectGenerator {
       appendJavaMain(projectConfiguration, zos);
     }
     appendProperties(projectConfiguration, zos);
+    appendMessages(projectConfiguration, zos);
     appendChangeLog(projectConfiguration, zos);
 
     zos.close();
@@ -192,12 +193,7 @@ public class ProjectGenerator {
     if (projectConfiguration.getPackagingMode() == PACKAGING_MODE.WAR) {
       Plugin warPlugin = new Plugin();
       warPlugin.setArtifactId("maven-war-plugin");
-
-      Xpp3Dom warConfiguration = new Xpp3Dom("configuration");
-      Xpp3Dom failOnMissingWebXml = new Xpp3Dom("failOnMissingWebXml");
-      failOnMissingWebXml.setValue(Boolean.FALSE.toString());
-      warConfiguration.addChild(failOnMissingWebXml);
-      warPlugin.setConfiguration(warConfiguration);
+      warPlugin.setVersion(version.getMavenWarPlugin());
 
       build.addPlugin(warPlugin);
     }
@@ -419,6 +415,13 @@ public class ProjectGenerator {
   private void appendProperties(ProjectConfiguration projectConfiguration, ZipOutputStream zos)
     throws IOException {
     ZipEntry e = new ZipEntry("src/main/resources/application.properties");
+    zos.putNextEntry(e);
+  }
+
+
+  private void appendMessages(ProjectConfiguration projectConfiguration, ZipOutputStream zos)
+    throws IOException {
+    ZipEntry e = new ZipEntry("src/main/resources/messages.properties");
     zos.putNextEntry(e);
   }
 

@@ -1,8 +1,9 @@
 initializr:
   versions:
     - blossom: 1.0.0-SNAPSHOT
-      springboot: 2.0.0.RC1
+      springboot: 2.0.0.RELEASE
       kotlin: 1.2.21
+      maven-war-plugin: 3.2.0
   groups:
     - name: Core
       description: Blossom core functionalities
@@ -10,11 +11,7 @@ initializr:
         - name: Blossom Core
           id: blossom-starter-basic
           description: Blossom basic starter (no web interface)
-<<<<<<< HEAD
-          groupId: com.blossomproject
-=======
           groupId: com.blossom-project
->>>>>>> d510ca9760a0a3594ada935c9168c8bb4d059834
           artifactId: blossom-starter-basic
     - name: Interfaces
       description: Blossom interfaces
@@ -22,20 +19,12 @@ initializr:
         - name: Blossom UI Web
           id: blossom-starter-ui-web
           description: Blossom UI Web starter (Back-office)
-<<<<<<< HEAD
-          groupId: com.blossomproject
-=======
           groupId: com.blossom-project
->>>>>>> d510ca9760a0a3594ada935c9168c8bb4d059834
           artifactId: blossom-starter-ui-web
         - name: Blossom UI Api
           id: blossom-starter-ui-api
           description: Blossom UI Api starter (Back-office)
-<<<<<<< HEAD
-          groupId: com.blossomproject
-=======
           groupId: com.blossom-project
->>>>>>> d510ca9760a0a3594ada935c9168c8bb4d059834
           artifactId: blossom-starter-ui-api
     - name: Utilities
       description: Blossom modules to add some utility features to Blossom
@@ -43,11 +32,7 @@ initializr:
         - name: Business Process Manager
           id: blossom-starter-filemanager
           description: Add a Business Process Manager to Blossom (Camunda)
-<<<<<<< HEAD
-          groupId: com.blossomproject
-=======
           groupId: com.blossom-project
->>>>>>> d510ca9760a0a3594ada935c9168c8bb4d059834
           artifactId: blossom-starter-bpmn
     - name: Functionnalities
       description: Blossom modules to add some functionnality to your app'
@@ -55,18 +40,10 @@ initializr:
         - name: File Manager
           id: blossom-starter-filemanager
           description: File storing and serving feature and tools
-<<<<<<< HEAD
-          groupId: com.blossomproject
-=======
           groupId: com.blossom-project
->>>>>>> d510ca9760a0a3594ada935c9168c8bb4d059834
           artifactId: blossom-starter-filemanager
         - name: Articles
           id: blossom-starter-articles
           description: Richtext articles and front serving
-<<<<<<< HEAD
-          groupId: com.blossomproject
-=======
           groupId: com.blossom-project
->>>>>>> d510ca9760a0a3594ada935c9168c8bb4d059834
           artifactId: blossom-starter-articles
