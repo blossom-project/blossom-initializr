@@ -66,6 +66,7 @@ public class ProjectGenerator {
       appendJavaMain(projectConfiguration, zos);
     }
     appendProperties(projectConfiguration, zos);
+    appendMessages(projectConfiguration, zos);
     appendChangeLog(projectConfiguration, zos);
 
     zos.close();
@@ -414,6 +415,13 @@ public class ProjectGenerator {
   private void appendProperties(ProjectConfiguration projectConfiguration, ZipOutputStream zos)
     throws IOException {
     ZipEntry e = new ZipEntry("src/main/resources/application.properties");
+    zos.putNextEntry(e);
+  }
+
+
+  private void appendMessages(ProjectConfiguration projectConfiguration, ZipOutputStream zos)
+    throws IOException {
+    ZipEntry e = new ZipEntry("src/main/resources/messages.properties");
     zos.putNextEntry(e);
   }
 
