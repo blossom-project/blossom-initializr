@@ -67,7 +67,7 @@
             </div>
             <div class="col-lg-12">
               <h4 class="m-t-lg">Back-office API</h4>
-              <p>Blossom comes with an API (module : blossom-starter-ui-api) which can be accessed on <code>/blossom</code>, secured with OAuth2.</p>
+              <p>Blossom comes with an API (module : blossom-starter-ui-api) which can be accessed on <code>/blossom/api</code>, secured with OAuth2.</p>
               <p>The API is a level-2 API on the Richardson Maturity Model.</p>
             </div>
           </div>
@@ -174,16 +174,11 @@
         </div>
         <div class="col-lg-12">
           <div class="navy-line-light"></div>
-          <h3>Scheduling</h3>
-        </div>
-        <div class="col-lg-12">
-          <div class="navy-line-light"></div>
           <h3>Generic implementations</h3>
         </div>
         <div class="col-lg-12">
           <div class="navy-line-light"></div>
           <h3>Application Events</h3>
-
           <div class="row">
             <div class="col-lg-12">
               <h4 class="m-t-lg">Events</h4>
