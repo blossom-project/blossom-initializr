@@ -34,7 +34,9 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Blossom</a>
+          <a class="navbar-brand" href="#">
+            <img src="/img/blossom/blossom-small-bright.svg"/>
+          </a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right text-primary">

@@ -8571,3 +8571,13 @@ body.md-skin {
     margin: 0;
   }
 }
+
+
+.landing-page .navbar-default a.navbar-brand {
+ padding:0;
+}
+
+.navbar-brand img{
+  height:66px;
+  width:190px;
+}
