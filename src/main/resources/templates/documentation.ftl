@@ -25,27 +25,12 @@
     <div class="col-lg-12">
       <div class="navy-line"></div>
       <h2>Quick start</h2>
-      <p>Sadly, there is no quick start yet :'-(</p>
-      <p>You must clone the repository, build, install it manually, then you can use the project
-        generator to start your first project with Blossom.</p>
-
-      <ol>
-        <li>
-          Get the jars into your local maven repository
-          <ol>
-            <li><code>git clone https://github.com/blossom-project/blossom.git</code></li>
-            <li><code>cd blossom</code></li>
-            <li><code>mvn clean install</code></li>
-          </ol>
-        </li>
-        <li>
-          Generate your application
-          <ol>
-            <li>Go to <a href="/initializr" target="_blank">the initializr</a></li>
-            <li>Choose the modules you want and generate your app' !</li>
-          </ol>
-        </li>
-      </ol>
+        <ol>
+          <li>Go to <a href="/initializr" target="_blank">the initializr</a></li>
+          <li>Choose the modules you want and generate your app' !</li>
+          <li>Unzip the generated project and import it in your favorite IDE</li>
+          <li>Run the main <code>Application</code> class</li>
+        </ol>
     </div>
   </div>
 </section>
