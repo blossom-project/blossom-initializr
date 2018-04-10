@@ -106,7 +106,7 @@
           </div>
           <div class="row">
             <div class="col-lg-12">
-              <h4 class="m-t-lg">BlosomCacheManager</h4>
+              <h4 class="m-t-lg">BlossomCacheManager</h4>
               <p>BlossomCacheManager extends the <code>AbstractTransactionSupportingCacheManager</code> provided by Spring and override a few methods to provide additional behaviour.</p>
               <p>All ApplicationContext registered beans of type <code>com.blossomproject.core.cache.CacheConfig</code> are all injected using a <code>PluginRegistry<CacheConfig, String> registry</code>.</p>
               <p>When required to create a Cache with it's name, it'll find a CacheConfig (or use the default one) and instantiate a new <code>BlossomCache</code>.</p>
@@ -115,7 +115,7 @@
           </div>
           <div class="row">
             <div class="col-lg-12">
-              <h4 class="m-t-lg">BlosomCacheResolver</h4>
+              <h4 class="m-t-lg">BlossomCacheResolver</h4>
               <p>Blossom provides a default implementation of the interface <code>org.springframework.cache.interceptor.CacheResolver</code></p>
               <p>If no cache name is defined on your <code>@Cacheable</code>, <code>@CacheEvict</code>, <code>@CachePut</code> annotations, the annotated method's class canonical name will be used.</p>
             </div>
