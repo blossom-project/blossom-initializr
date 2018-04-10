@@ -7,12 +7,13 @@
     margin-bottom:10px;
   }
 </style>
+
 <section id="headline" class="container">
   <div class="row">
     <div class="col-lg-12 text-center">
       <div class="navy-line"></div>
       <h1>Blossom</h1>
-      <p>Blossom is a Java framework base on Spring-Boot which enables you to realize your projects
+      <p>Blossom is a Java framework based on Spring-Boot which enables you to realize your projects
         quickly and smoothly.</p>
       <p>It comes with several modules and tools made to ease and speed up your development
         process.</p>
@@ -41,302 +42,23 @@
     <div class="col-lg-12">
       <div class="navy-line"></div>
       <h2>Features</h2>
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="navy-line-light"></div>
-          <h3>User Interfaces</h3>
-          <div class="row">
-            <div class="col-lg-12">
-              <h4 class="m-t-lg">Back-office web interface</h4>
-              <p>Blossom comes with a back-office interface (module : blossom-starter-ui-web) which can be accessed on <code>/blossom</code>.</p>
-            </div>
-            <div class="col-lg-12">
-              <h4 class="m-t-lg">Back-office API</h4>
-              <p>Blossom comes with an API (module : blossom-starter-ui-api) which can be accessed on <code>/blossom/api</code>, secured with OAuth2.</p>
-              <p>The API is a level-2 API on the Richardson Maturity Model.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-12">
-          <div class="navy-line-light"></div>
-          <h3>Security</h3>
-        </div>
-        <div class="col-lg-12">
-          <div class="navy-line-light"></div>
-          <h3>Caching</h3>
-          <div class="row">
-            <div class="col-lg-12">
-              <h4 class="m-t-lg">Cache Abstraction</h4>
-              <p>Blossom uses the Spring cache abstraction for it's internal usage.</p>
-              <p>Documentation can be found <a href="https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-caching.html" target="_blank">here</a></p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-12">
-              <h4 class="m-t-lg">Caffeine</h4>
-              <p>Blossom uses <a href="https://github.com/ben-manes/caffeine" target="_blank">Caffeine</a> as its cache implementation.</p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-12">
-              <h4 class="m-t-lg">BlossomCache</h4>
-              <p><code>BlossomCache</code> extends the spring-provided <code>CaffeineCache</code> and adds the possibility to disable the cache at runtime, using the <code>cache.setEnabled(false)</code> method.</p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-12">
-              <h4 class="m-t-lg">CacheConfig</h4>
-              <p>Blossom cache configurations, represented by the <code>com.blossomproject.core.cache.CacheConfig</code> interface, are registered as Spring <code>@Bean</code> in the application context.</p>
-              <p>You can provide configuration for the caches using the <code>com.blossomproject.core.cache.CacheConfig.CacheConfigBuilder</code>.</p>
-              <p>This builder allows you to define the following properties : </p>
-              <ul>
-                <li>the cache name (<code>String</code>)</li>
-                <li>the cache <a href="http://static.javadoc.io/com.github.ben-manes.caffeine/caffeine/2.5.0/com/github/benmanes/caffeine/cache/CaffeineSpec.html" target="_blank">Caffeine specification</a> to specify the Cache behavior(<code>String</code>)</li>
-                <li>linked caches names (multiple <code>String</code>)</li>
-                <li>enabled or disabled by default(<code>boolean</code></li>
-              </ul>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-12">
-              <h4 class="m-t-lg">Default CacheConfig</h4>
-              <p>Blossom provides a default fallback CacheConfig which is apply on each cache which doesn't possess a specific CacheConfig.</p>
-              <p>You can override it by adding a <code>CacheConfig</code> to your application context, with the bean qualifier set as <code>defaultCacheConfig</code></p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-12">
-              <h4 class="m-t-lg">BlossomCacheManager</h4>
-              <p>BlossomCacheManager extends the <code>AbstractTransactionSupportingCacheManager</code> provided by Spring and override a few methods to provide additional behaviour.</p>
-              <p>All ApplicationContext registered beans of type <code>com.blossomproject.core.cache.CacheConfig</code> are all injected using a <code>PluginRegistry<CacheConfig, String> registry</code>.</p>
-              <p>When required to create a Cache with it's name, it'll find a CacheConfig (or use the default one) and instantiate a new <code>BlossomCache</code>.</p>
-              <p></p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-12">
-              <h4 class="m-t-lg">BlossomCacheResolver</h4>
-              <p>Blossom provides a default implementation of the interface <code>org.springframework.cache.interceptor.CacheResolver</code></p>
-              <p>If no cache name is defined on your <code>@Cacheable</code>, <code>@CacheEvict</code>, <code>@CachePut</code> annotations, the annotated method's class canonical name will be used.</p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-12">
-              <h4 class="m-t-lg">Cache usage</h4>
-              <p>Only DAOs contains caching at this moment.</p>
-              <p>DAO extending <code>com.blossomproject.core.common.dao.GenericReadOnlyDaoImpl</code> or <code>com.blossomproject.core.common.dao.GenericCrudDaoImpl</code> benefits from generic caching for their methods.</p>
-              <p>Due to the trickyness of cache-invalidation, the following harsh rules are used : </p>
-              <ul>
-                <li>
-                  The cache is fully cleaned up
-                  <li>
-                    <li>when one entity is created using <code>ENTITY create(ENTITY toCreate);</code></li>
-                    <li>when many entities are created using <code>List&lt;ENTITY&gt; create(Collection&lt;ENTITY&gt; toCreates);</code></li>
-                    <li>when a entity is deleted using <code>void delete(ENTITY toDelete);</code></li>
-                    <li>when many entities are updated using <code>List&lt;ENTITY&gt; update(Map&lt;Long, ENTITY&gt; toUpdates);</code></li>
-                  </ul>
-                </li>
-              <li>
-                A cache key is updated
-                <ul>
-                  <li>when an entity is updated using <code>ENTITY update(long id, ENTITY toUpdate);</code></>
-                </ul>
-              </li>
-              <li>
-                A cache key is added
-                <ul>
-                  <li>when an entity is read by its id using <code>ENTITY getOne(long id);</code>. Cache key is the id as string.</li>
-                  <li>when a page of entities is read using <code>Page&lt;ENTITY&gt; getAll(Pageable pageable);</code>. Cache key is computed using argument.</li>
-                  <li>when a list of entities is read using <code>List&lt;ENTITY&gt; getAll(List&lt;Long&gt; ids);</code>. Cache key is computed using argument.</li>
-                  <li>when all entities are read using <code>List&lt;ENTITY&gt; getAll();</code>. Cache key is 'all'.</li>
-                </ul>
-              </li>
-              </ul>
-              <p>Additional rules apply when an entry is evicted, using a custom <code>RemovalListener</code> from Caffeine : if the removed element is an AbstractEntity, all other cache elements which are not AbstractEntities are evicted too.</p>
-              <p>This ensures that evicting an entity will remove all cached Page or List possibly containing this entity.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-12">
-          <div class="navy-line-light"></div>
-          <h3>Generic implementations</h3>
-        </div>
-        <div class="col-lg-12">
-          <div class="navy-line-light"></div>
-          <h3>Application Events</h3>
-          <div class="row">
-            <div class="col-lg-12">
-              <h4 class="m-t-lg">Events</h4>
-              <div class="row">
-                <div class="col-lg-12">
-                  <p>Services extending <code>com.blossomproject.core.common.service.GenericCrudServiceImpl</code> or <code>com.blossomproject.core.common.service.GenericAssociationServiceImpl</code> benefit from automatic event broadcasting.</p>
-                  <p>Theses event types depends on the method called, and contains informations about the DTO being created, modified, deleted, associated, etc. </p>
-                  <p>Some events are sent before and after the operation.</p>
-                  <div class="b-r-xl p-xs bg-warning m-l-md m-r-md m-t-md m-b-md">
-                      <span class="text-white">
-                        <i class="fa fa-warning"></i> Be careful when overriding existing generic method on theses classes, as if you don't call super, application event broadcasting will be lost.<br/>
-                        Use the constructor provided <code>ApplicationEventPublisher</code> locally to send your own events.
-                      </span>
-                  </div>
-                  <p>The event all extend <code>com.blossomproject.core.common.event.Event</code> and blossom provides predefined event for handling with DTO lifecycle.</p>
-                  <p>Application specific events can be created and handled following. <a href="https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html#context-functionality-events" target="_blank">See more on Spring documentation here</a>.</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-12">
-                  <h5 class="m-t-md">CreatedEvent</h5>
-                  <p>This event is sent right <strong>after</strong> an <code>AbstractDTO</code> has been created.</p>
-                  <p>It contains the newly created DTO which can be accessed using the <code>getDTO()</code> method.</p>
-                </div>
-
-                <div class="col-lg-12">
-                  <h5 class="m-t-md">UpdatedEvent</h5>
-                  <p>This event is sent right <strong>after</strong> an <code>AbstractDTO</code> has been updated.</p>
-                  <p>It contains the updated DTO which can be accessed using the <code>getDTO()</code> method.</p>
-                </div>
-
-                <div class="col-lg-12">
-                  <h5 class="m-t-md">BeforeDeletedEvent</h5>
-                  <p>This event is sent right <strong>before</strong> an <code>AbstractDTO</code> has been deleted.</p>
-                  <p>It contains the soon-to-be deleted DTO which can be accessed using the <code>getDTO()</code> method.</p>
-                </div>
-
-                <div class="col-lg-12">
-                  <h5 class="m-t-md">DeletedEvent</h5>
-                  <p>This event is sent right <strong>after</strong> an <code>AbstractDTO</code> has been deleted.</p>
-                  <p>It contains the deleted DTO which can be accessed using the <code>getDTO()</code> method.</p>
-                </div>
-
-                <div class="col-lg-12">
-                  <h5 class="m-t-md">AssociatedEvent</h5>
-                  <p>This event is sent right <strong>after</strong> an <code>AbstractAssociationDTO</code> between two <code>AbstractDTO</code>s has been created.</p>
-                  <p>It contains the deleted DTO which can be accessed using the <code>getDTO()</code> method.</p>
-                </div>
-
-                <div class="col-lg-12">
-                  <h5 class="m-t-md">BeforeDissociatedEvent</h5>
-                  <p>This event is sent right <strong>before</strong> an <code>AbstractAssociationDTO</code> between two <code>AbstractDTO</code>s has been deleted.</p>
-                  <p>It contains the soon-to-be DTO which can be accessed using the <code>getDTO()</code> method.</p>
-                </div>
-
-                <div class="col-lg-12">
-                  <h5 class="m-t-md">AfterDissociatedEvent</h5>
-                  <p>This event is sent right <strong>after</strong> an <code>AbstractAssociationDTO</code> between two <code>AbstractDTO</code>s has been deleted.</p>
-                  <p>It contains the DTO which can be accessed using the <code>getDTO()</code> method.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-12">
-              <h4 class="m-t-lg">Handling</h4>
-              <div class="row">
-                <div class="col-lg-12">
-                  <p>Blossom use generic event handling for dealing with the DTO lifecycle.</p>
-                  <p>Theses handlers are used for two</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-12">
-          <div class="navy-line-light"></div>
-          <h3>Plugin system</h3>
-        </div>
-
-        <div class="col-lg-12">
-          <div class="navy-line-light"></div>
-          <h3>Indexation and Search</h3>
-          <p>Blossom provides utility interfaces and implementations to deal with indexation and search powered by Elasticsearch. (<code>IndexationEngine</code> and <code>SearchEngine</code>)</p>
-          <p>The embedded elasticsearch version currently is <strong>2.4.6</strong></p>
-          <p>By default, an embedded node will be started, and a client on that node provided.</p>
-          <p>You can connect to a standalone Elasticsearch installation by setting the properties below in your application.properties file.</p>
-          <textarea class="code" data-cm-mode="properties">
-# ELASTICSEARCH (ElasticsearchProperties)
-blossom.elasticsearch.cluster-name=elasticsearch # Elasticsearch cluster name.
-blossom.elasticsearch.cluster-nodes= # Comma-separated list of cluster node addresses.
-blossom.elasticsearch.properties.*= # Additional properties used as the client Settings.</textarea>
-        </div>
-
-        <div class="col-lg-12">
-          <div class="navy-line-light"></div>
-          <h3>Bean Validation</h3>
-          <p>Blossom relies on the default validation capabilities and approaches of Spring.</p>
-          <p>Internally, the project prefers to rely on the "JSR-303 Bean Validation API" and provides the message source for error messages.</p>
-          <p><a href="https://docs.spring.io/spring/docs/4.1.x/spring-framework-reference/html/validation.html#validation" target="_blank"> See here for more documentation about spring bean validation</a></p>
-        </div>
-
-        <div class="col-lg-12">
-          <div class="navy-line-light"></div>
-          <h3>Exception handling</h3>
-          <p>Blossom provides a generic <code>ErrorControllerAdvice</code> handling various exceptions (<code>Throwable</code>,<code>HttpRequestMethodNotSupportedException</code>,<code>NoHandlerFoundException</code>,<code>NoSuchElementException</code>,<code>AccessDeniedException</code>,) happening inside a <code>@BlossomController</code>.</p>
-          <p>For front-end errors and unmanaged exceptions, we provides a <code>BlossomErrorViewResolver</code> which choose between multiple error view locations :</p>
-          <ul>
-            <li>If the current path starts with <code>/blossom</code>, search the view in <code>src/resources/blossom/error/blossom/</code></li>
-            <li>Else search the error view in <code>src/resources/blossom/error/</code></li>
-            <li>If a specific template is not found, search <code>src/resources/error/blossom/default.ftl</code> or <code>src/resources/error/default.ftl</code></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-12">
-          <div class="navy-line-light"></div>
-          <h3>Action tokens</h3>
-          <p>Blossom provides a <code>ActionTokenService</code> which can be used to encrypt <code>String</code> tokens and decrypt with an expiration date.</p>
-          <p>These can be used for temporarily-valid tokens sent by e-mail as an example, but you can use it for any other purpose.</p>
-          <p>An <code>ActionToken</code> contains : </p>
-          <ul>
-            <li>a user id (<code>Long</code>)</li>
-            <li>an action (<code>String</code>)</li>
-            <li>an expiration date (<code>String</code>)</li>
-            <li>a map of additional parameters (<code>Map&lt;String,String&gt;</code></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-12">
-          <div class="navy-line-light"></div>
-          <h3>Rendering & templating</h3>
-          <p>Blossom uses <a href="https://freemarker.apache.org/" target="_blank">Freemarker</a> as the template engine for the back-office.</p>
-          <p>Any template contained in Blossom can be overriden in your application. Just add a template bearing the same name in the same location and it'll have precedence over the provided one.</p>
-          <p>De facto, you can use it for front-end rendering, but you can choose to create an API with</p>
-        </div>
-
-        <div class="col-lg-12">
-          <div class="navy-line-light"></div>
-          <h3>Database source control</h3>
-          <p><a href="http://www.liquibase.org/" target="_blank">Liquibase</a> is used as a Database source control.</p>
-          <p>A Blossom project must contains a root changelog containing the following includes.</p>
-          <textarea class="code" data-cm-mode="yaml">
-databaseChangeLog:
-    - includeAll:
-        path: classpath*:/db/changelog/blossom
-    - includeAll:
-        path: classpath*:/db/changelog/blossom/modules
-        errorIfMissingOrEmpty: false
-    - includeAll:
-        path: classpath:/db/changelog/generated
-        errorIfMissingOrEmpty: false
-          </textarea>
-          <p>The <code>classpath*:</code> will look for changesets files in all jars of the classpath, while <code>classpath:</code> prefixed includes will only look for changeset inside your application.</p>
-        </div>
-
-        <div class="col-lg-12">
-          <div class="navy-line-light"></div>
-          <h3>Internationalisation</h3>
-            <p>Blossom's back-office interface natively considers two languages: english and french. If you want to add other languages to the interface, you need to create a <code>languages.properties</code> file in your resources folder containing the following:</p>
-            <textarea class="code" data-cm-mode="properties">blossom.languages=en,fr  (followed by all the locale language codes you want to add)</textarea>
-            <p>To include you own message ressources, simply add them to your resources/messages folder.</p>
-            <p>You can use the <code>Set&lt;Local&gt;</code> Bean declared in <code>CommonAutoConfiguration</code> in your controllers to internationalise your application.</p>
-        </div>
-
-        <div class="col-lg-12">
-          <div class="navy-line-light"></div>
-          <h3>Mailing</h3>
-        </div>
-
-        <div class="col-lg-12">
-          <div class="navy-line-light"></div>
-          <h3>Monitoring</h3>
-        </div>
+      <ul>
+        <li><a href="/documentation/features/interfaces">User interfaces</a></li>
+        <li><a href="/documentation/features/application_event">Application events</a></li>
+        <li><a href="/documentation/features/cache">Cache</a></li>
+        <li><a href="/documentation/features/database_versionning">User interfaces</a></li>
+        <li><a href="/documentation/features/exception">Exception Handling</a></li>
+        <li><a href="/documentation/features/generic_impl">Generic implementation</a></li>
+        <li><a href="/documentation/features/i18n">I18n</a></li>
+        <li><a href="/documentation/features/indexation">Indexation and search</a></li>
+        <li><a href="/documentation/features/mail">Mailing</a></li>
+        <li><a href="/documentation/features/monitoring">Monitoring</a></li>
+        <li><a href="/documentation/features/plugin_system">Plugin system</a></li>
+        <li><a href="/documentation/features/security">Security</a></li>
+        <li><a href="/documentation/features/templating">Template engine</a></li>
+        <li><a href="/documentation/features/themes">Themes</a></li>
+        <li><a href="/documentation/features/validation">Validation</a></li>
+      </ul>
       </div>
     </div>
   </div>

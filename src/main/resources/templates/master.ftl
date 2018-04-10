@@ -59,3 +59,40 @@
 </body>
 </html>
 </#macro>
+
+<#macro feature title>
+  <@default>
+  <style>
+    .CodeMirror{
+      margin-top:10px;
+      margin-bottom:10px;
+    }
+  </style>
+
+  <section id="headline" class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <div class="navy-line"></div>
+        <h1>${title}</h1>
+      </div>
+    </div>
+  </section>
+
+
+    <#nested/>
+
+  <script>
+    $(document).ready(function () {
+
+      $("textarea.code").each(function (index, value) {
+        CodeMirror.fromTextArea(value, {
+          mode: $(this).data("cm-mode"),
+          lineNumbers: true,
+          matchBrackets: true,
+          readOnly: true
+        });
+      });
+    });
+  </script>
+  </@default>
+</#macro>
