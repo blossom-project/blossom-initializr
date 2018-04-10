@@ -2,11 +2,6 @@ language: java
 jdk:
 - oraclejdk8
 sudo: false
-before_install:
-  - git clone https://github.com/blossom-project/blossom.git ~/builds/blossom
-  - pushd ~/builds/blossom
-  - mvn clean install
-  - popd
 after_success:
 - mvn clean test org.jacoco:jacoco-maven-plugin:report org.eluder.coveralls:coveralls-maven-plugin:report
 notifications:
