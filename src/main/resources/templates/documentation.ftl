@@ -3,14 +3,16 @@
 <#macro widgetFeature title link icon>
 
 <div class="col-md-6 col-lg-4">
-  <div class="widget widget-feature p-lg text-center" onclick="window.open('${link}')">
-    <div class="m-b-md">
-      <i class="${icon}"></i>
-      <h3 class="font-bold">
-       ${title}
-      </h3>
+  <a href="${link}">
+    <div class="widget widget-feature p-lg text-center">
+      <div class="m-b-md">
+        <i class="${icon}"></i>
+        <h3 class="font-bold">
+         ${title}
+        </h3>
+      </div>
     </div>
-  </div>
+  </a>
 </div>
 </#macro>
 

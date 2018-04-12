@@ -5,12 +5,12 @@
   <section id="generator" class="container">
     <div class="row">
       <div class="col-lg-12 text-center">
-        <div class="navy-line"></div>
         <h1>Generate your project</h1>
         <p>Name it, select any modules and start your own Blossom-based project !</p>
       </div>
     </div>
 
+    <div class="navy-line"></div>
     <form method="post" action="/initializr" class="form-horizontal">
       <div class="row m-t-xl">
         <div class="col-md-6">
