@@ -26,4 +26,9 @@ public class DocumentationController
     return new ModelAndView("documentation/howtos/howto-"+howto);
   }
 
+  @GetMapping("/starters/{starter}")
+  public ModelAndView starter(@PathVariable String starter) {
+    return new ModelAndView("documentation/starters/starter-"+starter);
+  }
+
 }

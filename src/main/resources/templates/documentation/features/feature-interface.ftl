@@ -5,7 +5,7 @@
   <div class="row">
     <div class="col-lg-12">
       <div class="navy-line-light"></div>
-      <h3>User Interfaces</h3>
+      <h3>User Interface</h3>
       <div class="row">
         <div class="col-lg-12">
           <h4 class="m-t-lg">Back-office web interface</h4>

@@ -22,7 +22,7 @@
   <script src="/js/bootstrap.min.js"></script>
 </head>
 
-<body id="page-top" class="landing-page no-skin-config">
+<body class="landing-page no-skin-config">
 
   <div class="navbar-wrapper">
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
