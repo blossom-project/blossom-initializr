@@ -32,20 +32,16 @@
     <div class="col-lg-12 ">
       <div class="navy-line"></div>
       <h2 class="text-center m-b-xl">Quick start</h2>
-      <div class="row">
-        <div class="col-xs-6 col-md-3">
-            <h3><i class="fa fa-hand-o-up"></i> Go to <a href="/initializr" target="_blank">the Initializr</a></h3>
-            <p>The Initializr will generate for you a complete maven project.</p>
+      <div class="row text-center">
+        <div class="col-sm-4">
+            <h3><i class="fa fa-hand-o-up"></i> Generate your project </h3>
+            <p><a href="/initializr" target="_blank">The Initializr</a> will generate for you a complete maven project. Choose your modules, set your preference and hit "Generate".</p>
         </div>
-        <div class="col-xs-6 col-md-3">
-          <h3><i class="fa fa-wrench"></i> Configure your project</h3>
-          <p>Choose your modules, set your preference and hit "Generate".</p>
-        </div>
-        <div class="col-xs-6 col-md-3">
+        <div class="col-sm-4">
           <h3><i class="fa fa-play"></i> Open and run your project</h3>
           <p>Unzip the generated project and import it in your favorite IDE. Run the main <code>Application</code> class.</p>
         </div>
-        <div class="col-xs-6 col-md-3">
+        <div class="col-sm-4">
           <h3><i class="fa fa-rocket"></i> Enjoy your new back-office</h3>
           <p>Open your favorite web browser on <a href="http://localhost:8080/blossom">http://localhost:8080/blossom</a></p>
         </div>
