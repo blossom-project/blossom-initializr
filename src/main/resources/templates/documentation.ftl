@@ -18,27 +18,41 @@
 <section id="headline" class="container">
   <div class="row">
     <div class="col-lg-12 text-center">
-      <div class="navy-line"></div>
       <h1>Blossom</h1>
-      <p>Blossom is a Java framework based on Spring-Boot which enables you to realize your projects
-        quickly and smoothly.</p>
-      <p>It comes with several modules and tools made to ease and speed up your development
-        process.</p>
+      <p>Blossom is a Java framework based on Spring-Boot which enables you to realize your projects quickly and smoothly.</p>
+      <p>It contains a responsive back-office which includes several modules and tools made to ease and speed up your development process.</p>
     </div>
   </div>
 </section>
 
 <section id="quickstart" class="container documentation">
   <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-12 ">
       <div class="navy-line"></div>
-      <h2>Quick start</h2>
-        <ol>
-          <li>Go to <a href="/initializr" target="_blank">the initializr</a></li>
-          <li>Choose the modules you want and generate your app' !</li>
-          <li>Unzip the generated project and import it in your favorite IDE</li>
-          <li>Run the main <code>Application</code> class</li>
-        </ol>
+      <h2 class="text-center">Quick start</h2>
+      <div class="row">
+        <div class="col-xs-6 col-md-3">
+            <h3><i class="fa fa-hand-o-up"></i> Go to <a href="/initializr" target="_blank">the Initializr</a></h3>
+            <p>The Initializr will generate for you a complete maven project.</p>
+        </div>
+        <div class="col-xs-6 col-md-3">
+          <h3><i class="fa fa-wrench"></i> Configure your project</h3>
+          <p>Choose your modules, set your preference and hit "Generate".</p>
+        </div>
+        <div class="col-xs-6 col-md-3">
+          <h3><i class="fa fa-play"></i> Open and run your project</h3>
+          <p>Unzip the generated project and import it in your favorite IDE. Run the main <code>Application</code> class.</p>
+        </div>
+        <div class="col-xs-6 col-md-3">
+          <h3><i class="fa fa-rocket"></i> Enjoy your new back-office</h3>
+          <p>Open your favorite web browser on <a href="http://localhost:8080/blossom">http://localhost:8080/blossom</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row m-t-lg">
+    <div class="col-xs-12 col-lg-8 col-lg-offset-2 text-center">
+      <img class="img-responsive border-top-bottom border-left-right" src="/example.png"/>
     </div>
   </div>
 </section>
@@ -48,7 +62,7 @@
   <div class="row">
     <div class="col-lg-12">
       <div class="navy-line"></div>
-      <h2>Features</h2>
+      <h2 class="text-center">Features</h2>
 
       <div class="row">
         <@widgetFeature title="User interface" link="/documentation/features/interface" icon="fa fa-window-restore fa-4x" />
