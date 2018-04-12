@@ -29,7 +29,7 @@
   <div class="row">
     <div class="col-lg-12 ">
       <div class="navy-line"></div>
-      <h2 class="text-center">Quick start</h2>
+      <h2 class="text-center m-b-xl">Quick start</h2>
       <div class="row">
         <div class="col-xs-6 col-md-3">
             <h3><i class="fa fa-hand-o-up"></i> Go to <a href="/initializr" target="_blank">the Initializr</a></h3>
@@ -62,7 +62,7 @@
   <div class="row">
     <div class="col-lg-12">
       <div class="navy-line"></div>
-      <h2 class="text-center">Features</h2>
+      <h2 class="text-center m-b-xl">Features</h2>
 
       <div class="row">
         <@widgetFeature title="User interface" link="/documentation/features/interface" icon="fa fa-window-restore fa-4x" />
@@ -92,7 +92,7 @@
   <div class="row">
     <div class="col-lg-12">
       <div class="navy-line"></div>
-      <h2>How-tos</h2>
+      <h2 class="text-center m-b-xl">How-tos</h2>
       <div class="row">
         <@widgetFeature title="Start a project" link="/documentation/howtos/start_a_project" icon="fa fa-play fa-4x" />
         <@widgetFeature title="Manage the menu" link="/documentation/howtos/manage_the_menu" icon="fa fa-bars fa-4x" />
@@ -111,7 +111,7 @@
   <div class="row">
     <div class="col-lg-12">
       <div class="navy-line"></div>
-      <h2>Starters</h2>
+      <h2 class="text-center m-b-xl">Starters</h2>
       <div class="row">
         <@widgetFeature title="blossom-starter-basic" link="/documentation/starters/blossom-starter-basic" icon="fa fa-cube fa-4x" />
         <@widgetFeature title="blossom-starter-ui-web" link="/documentation/starters/blossom-starter-ui-web" icon="fa fa-desktop fa-4x" />
