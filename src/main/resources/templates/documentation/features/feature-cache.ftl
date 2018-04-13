@@ -1,27 +1,31 @@
 <#import "/master.ftl" as master/>
 
-<@master.feature title="Caching">
-<section class="container documentation">
+<@master.feature title="Caching" javadocLink="https://www.javadoc.io/doc/com.blossom-project/blossom-core-cache">
+<section class="container">
+
   <div class="row">
     <div class="col-lg-12">
-      <div class="navy-line-light"></div>
       <h2 class="m-t-lg">Cache Abstraction</h2>
       <p>Blossom uses the Spring cache abstraction for it's internal usage.</p>
-      <p>Documentation can be found <a href="https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-caching.html" target="_blank">here</a></p>
+      <p>Documentation can be found <a href="https://docs.spring.io/spring-boot/docs/2.0.1.RELEASE/reference/html/boot-features-caching.html" target="_blank">here</a></p>
     </div>
   </div>
+
   <div class="row">
     <div class="col-lg-12">
       <h2 class="m-t-lg">Caffeine</h2>
-      <p>Blossom uses <a href="https://github.com/ben-manes/caffeine" target="_blank">Caffeine</a> as its cache implementation.</p>
+      <p>Blossom uses <a href="https://github.com/ben-manes/caffeine" target="_blank">Caffeine</a> as its default cache implementation.</p>
+      <p>Documentation can be found <a href="https://github.com/ben-manes/caffeine/wiki" target="_blank">here</a></p>
     </div>
   </div>
+
   <div class="row">
     <div class="col-lg-12">
       <h2 class="m-t-lg">BlossomCache</h2>
       <p><code>BlossomCache</code> extends the Spring-provided <code>CaffeineCache</code> and adds the possibility to disable the cache at runtime, using the <code>cache.setEnabled(false)</code> method.</p>
     </div>
   </div>
+
   <div class="row">
     <div class="col-lg-12">
       <h2 class="m-t-lg">CacheConfig</h2>
@@ -36,6 +40,7 @@
       </ul>
     </div>
   </div>
+
   <div class="row">
     <div class="col-lg-12">
       <h2 class="m-t-lg">Default CacheConfig</h2>
@@ -43,6 +48,7 @@
       <p>You can override it by adding a <code>CacheConfig</code> to your application context, with the bean qualifier set as <code>defaultCacheConfig</code></p>
     </div>
   </div>
+
   <div class="row">
     <div class="col-lg-12">
       <h2 class="m-t-lg">BlossomCacheManager</h2>
@@ -52,6 +58,7 @@
       <p></p>
     </div>
   </div>
+
   <div class="row">
     <div class="col-lg-12">
       <h2 class="m-t-lg">BlossomCacheResolver</h2>
@@ -59,6 +66,7 @@
       <p>If no cache name is defined on your <code>@Cacheable</code>, <code>@CacheEvict</code>, <code>@CachePut</code> annotations, the annotated method's class canonical name will be used.</p>
     </div>
   </div>
+
   <div class="row">
     <div class="col-lg-12">
       <h2 class="m-t-lg">Cache usage</h2>
@@ -90,5 +98,6 @@
       <p>This ensures that evicting an entity will remove all cached Page or List possibly containing this entity.</p>
     </div>
   </div>
+
 </section>
 </@master.feature>

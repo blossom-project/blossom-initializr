@@ -58,7 +58,7 @@
 </html>
 </#macro>
 
-<#macro feature title>
+<#macro feature title javadocLink="">
   <@default>
   <style>
     .CodeMirror{
@@ -70,14 +70,23 @@
   <section id="headline" class="container">
     <div class="row">
       <div class="col-lg-12 text-center">
+        <h1>
+          <a class="btn btn-primary btn-circle pull-left" href="/documentation" type="button" style="padding: 4px 0">
+            <i class="fa fa-arrow-left"></i>
+          </a>
+          <span>${title}</span>
+          <#if javadocLink??>
+            <a class="btn btn-primary btn-circle pull-right" href="${javadocLink}" type="button" target="_blank" style="padding: 4px 0;padding-left:4px;">
+              <i class="fa icon-java"></i>
+            </a>
+          </#if>
+        </h1>
         <div class="navy-line"></div>
-        <h1>${title}</h1>
       </div>
     </div>
   </section>
 
-
-    <#nested/>
+  <#nested/>
 
   <script>
     $(document).ready(function () {

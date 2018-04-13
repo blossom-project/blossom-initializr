@@ -1,11 +1,10 @@
 <#import "/master.ftl" as master/>
 
 <@master.feature title="Security">
-<section  class="container documentation">
+<section  class="container">
   <div class="row">
     <div class="col-lg-12">
-      <div class="navy-line-light"></div>
-      <h3>Security</h3>
+      <h2 class="m-t-lg">Security</h2>
     </div>
   </div>
 </section>

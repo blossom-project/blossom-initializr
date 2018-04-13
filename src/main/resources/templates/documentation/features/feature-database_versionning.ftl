@@ -1,11 +1,10 @@
 <#import "/master.ftl" as master/>
 
 <@master.feature title="Database versionning">
-<section class="container documentation">
+<section class="container">
   <div class="row">
     <div class="col-lg-12">
-      <div class="navy-line-light"></div>
-      <h2>Liquibase</h2>
+      <h2 class="m-t-lg">Liquibase</h2>
       <p><a href="http://www.liquibase.org/" target="_blank">Liquibase</a> is used as a Database source control.</p>
       <p>A Blossom project must contains a root changelog containing the following includes.</p>
       <textarea class="code" data-cm-mode="yaml">

@@ -41,9 +41,9 @@
           <h3><i class="fa fa-play"></i> Open and run your project</h3>
           <p>Unzip the generated project and import it in your favorite IDE. Run the main <code>Application</code> class.</p>
         </div>
-        <div class="col-sm-4">
+        <div class="col-md-4">
           <h3><i class="fa fa-rocket"></i> Enjoy your new back-office</h3>
-          <p>Open your favorite web browser on <a href="http://localhost:8080/blossom">http://localhost:8080/blossom</a></p>
+          <p>Open your favorite web browser on <a href="http://localhost:8080/blossom">http://localhost:8080/blossom</a> and log in with system/system</p>
         </div>
       </div>
     </div>

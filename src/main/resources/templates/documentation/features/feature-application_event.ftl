@@ -1,10 +1,10 @@
 <#import "/master.ftl" as master/>
 
 <@master.feature title="Application Events">
-<section class="container documentation">
+
+<section class="container">
   <div class="row">
     <div class="col-lg-12">
-      <div class="navy-line-light"></div>
       <h2 class="m-t-lg">Events</h2>
       <div class="row">
         <div class="col-lg-12">
@@ -84,13 +84,17 @@
         </div>
       </div>
     </div>
+  </div>
 
+  <div class="row">
     <div class="col-lg-12">
       <h2 class="m-t-lg">Handling</h2>
       <div class="row">
         <div class="col-lg-12">
           <p>Blossom use generic event handling for dealing with the DTO lifecycle.</p>
-          <p>An example of usage is the update of Elasticsearch indices during creation/update/deletion of entities. Events are processed in the <code>IndexationEventListeners</code> class.</p>
+          <p>An example of usage is the update of Elasticsearch indices during
+            creation/update/deletion of entities. Events are processed in the <code>IndexationEventListeners</code>
+            class.</p>
         </div>
       </div>
     </div>
