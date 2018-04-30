@@ -33,7 +33,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a href="#">
+          <a href="/">
             <img src="/img/blossom/blossom-small.svg"/>
           </a>
         </div>
@@ -48,6 +48,15 @@
     </nav>
 
   <#nested/>
+
+  <section id="footer" class="contact">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 text-center m-t-lg m-b-lg">
+          <p><strong>© 2018 Blossom</strong></p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <script src="/js/plugins/codemirror/codemirror.js"></script>
   <script src="/js/plugins/codemirror/mode/properties/properties.js"></script>
