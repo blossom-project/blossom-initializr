@@ -1,8 +1,9 @@
-<#import "master.ftl" as master/>
+<#import "master.ftl" as master>
+<#import "/blossom/utils/modal.ftl" as modal>
 
 <#macro widgetFeature title link icon>
 <div class="col-md-6 col-lg-4">
-  <a href="${link}">
+  <a data-toggle="modal" href="#${title?replace(' ', '-')}">
     <div class="widget widget-feature p-lg text-center">
       <div class="m-b-md">
         <i class="${icon}"></i>
@@ -13,9 +14,12 @@
     </div>
   </a>
 </div>
+<@modal.large id="${title?replace(' ', '-')}" href="${link}"/>
 </#macro>
 
 <@master.default>
+<link href="/css/style-documentation.css" rel="stylesheet">
+
 <section id="headline" class="container">
   <div class="row">
     <div class="col-lg-12 text-center">
