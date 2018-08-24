@@ -68,7 +68,6 @@
 </#macro>
 
 <#macro feature title javadocLink="">
-  <@default>
   <style>
     .CodeMirror{
       margin-top:10px;
@@ -76,11 +75,11 @@
     }
   </style>
 
-  <section id="headline" class="container">
+  <section id="headline" class="container-fluid">
     <div class="row">
       <div class="col-lg-12 text-center">
         <h1>
-          <a class="btn btn-primary btn-circle pull-left" href="/documentation" type="button" style="padding: 4px 0">
+          <a class="btn btn-primary btn-circle pull-left" data-dismiss="modal" type="button" style="padding: 4px 0">
             <i class="fa fa-arrow-left"></i>
           </a>
           <span>${title}</span>
@@ -110,5 +109,4 @@
       });
     });
   </script>
-  </@default>
 </#macro>
