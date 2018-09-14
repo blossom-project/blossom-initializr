@@ -111,7 +111,7 @@ public class ProjectGenerator {
           org.apache.maven.model.Dependency dependency = new org.apache.maven.model.Dependency();
           dependency.setGroupId(d.getGroupId());
           dependency.setArtifactId(d.getArtifactId());
-          dependency.setVersion("${blossom.version}");
+          dependency.setVersion(d.getVersion() == null ? "${blossom.version}" : d.getVersion());
           return dependency;
         })
             .collect(Collectors.toList())

@@ -1,6 +1,5 @@
 package com.blossomproject.showcase.initializr.model.properties;
 
-import com.blossomproject.showcase.initializr.model.Dependency;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.util.List;
