@@ -12,6 +12,9 @@ public class Dependency {
   private String artifactId;
   private String version;
 
+  private boolean isDefault;
+  private boolean isRequired;
+
   public String getId() {
     return id;
   }
@@ -58,5 +61,21 @@ public class Dependency {
 
   public void setVersion(String version) {
     this.version = version;
+  }
+
+  public boolean isDefault() {
+    return isDefault;
+  }
+
+  public void setDefault(boolean aDefault) {
+    isDefault = aDefault;
+  }
+
+  public boolean isRequired() {
+    return isRequired;
+  }
+
+  public void setRequired(boolean required) {
+    isRequired = required;
   }
 }

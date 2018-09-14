@@ -26,6 +26,7 @@ initializr:
       description: Blossom basic starter (no web interface)
       groupId: com.blossom-project
       artifactId: blossom-starter-basic
+      default: true
   - name: Interfaces
     description: Blossom interfaces
     dependencies:
