@@ -6,7 +6,7 @@ import com.blossomproject.showcase.initializr.model.SOURCE_LANGUAGE;
 import com.blossomproject.showcase.initializr.model.ProjectGenerator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.blossomproject.showcase.initializr.model.Initializr;
+import com.blossomproject.showcase.initializr.model.properties.Initializr;
 import javax.servlet.http.HttpServletResponse;
 import org.elasticsearch.action.bulk.BulkProcessor;
 import org.elasticsearch.action.index.IndexRequest;
