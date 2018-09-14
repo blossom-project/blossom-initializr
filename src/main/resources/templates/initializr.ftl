@@ -37,7 +37,7 @@
             <div class="col-sm-10">
               <select class="form-control" name="packagingMode">
                 <#list packagingModes as packagingMode>
-                  <option value="${packagingMode}">${packagingMode}</option>
+                  <option value="${packagingMode}" <#if packagingMode == initializr.defaultPackagingMode>selected="selected"</#if>>${packagingMode}</option>
                 </#list>
               </select>
             </div>

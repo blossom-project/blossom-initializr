@@ -13,6 +13,7 @@ public class Initializr {
   private List<Version> versions;
   private List<Group> groups;
   private List<InitializrFile> initializrFiles;
+  private String defaultPackagingMode;
 
   public List<Version> getVersions() {
     return versions;
@@ -36,6 +37,14 @@ public class Initializr {
 
   public void setInitializrFiles(List<InitializrFile> initializrFiles) {
     this.initializrFiles = initializrFiles;
+  }
+
+  public String getDefaultPackagingMode() {
+    return defaultPackagingMode;
+  }
+
+  public void setDefaultPackagingMode(String defaultPackagingMode) {
+    this.defaultPackagingMode = defaultPackagingMode;
   }
 
   public Optional<Version> findVersion(String blossomVersion) {
