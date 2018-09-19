@@ -1,36 +1,13 @@
 package com.blossomproject.showcase.initializr.model;
 
-import com.squareup.kotlinpoet.AnnotationSpec;
-import com.squareup.kotlinpoet.ClassName;
-import com.squareup.kotlinpoet.FileSpec;
-import com.squareup.kotlinpoet.FunSpec;
-import com.squareup.kotlinpoet.KModifier;
-import com.squareup.kotlinpoet.ParameterSpec;
-import com.squareup.kotlinpoet.TypeSpec;
+import com.blossomproject.showcase.initializr.model.properties.Initializr;
+import com.blossomproject.showcase.initializr.model.properties.InitializrFile;
+import com.blossomproject.showcase.initializr.model.properties.Version;
+import com.squareup.kotlinpoet.*;
 import com.sun.codemodel.CodeWriter;
-import com.sun.codemodel.JClassAlreadyExistsException;
-import com.sun.codemodel.JCodeModel;
-import com.sun.codemodel.JDefinedClass;
-import com.sun.codemodel.JMethod;
-import com.sun.codemodel.JMod;
-import com.sun.codemodel.JPackage;
-import com.sun.codemodel.JVar;
-import java.io.FilterOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Properties;
-import java.util.stream.Collectors;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
-import org.apache.maven.model.Build;
-import org.apache.maven.model.DependencyManagement;
-import org.apache.maven.model.Model;
-import org.apache.maven.model.Plugin;
-import org.apache.maven.model.PluginExecution;
+import com.sun.codemodel.*;
+import freemarker.template.Configuration;
+import org.apache.maven.model.*;
 import org.apache.maven.model.io.xpp3.MavenXpp3Writer;
 import org.apache.tomcat.util.http.fileupload.util.Streams;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
@@ -40,6 +17,17 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.ui.freemarker.FreeMarkerConfigurationFactory;
+
+import java.io.FilterOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 /**
  * Created by Maël Gargadennnec on 14/06/2017.
@@ -48,42 +36,36 @@ public class ProjectGenerator {
 
   private final Initializr initializr;
   private final ResourceLoader resourceLoader;
+  private final Configuration freemarkerConfiguration;
 
-  public ProjectGenerator(Initializr initializr, ResourceLoader resourceLoader) {
+  public ProjectGenerator(Initializr initializr, ResourceLoader resourceLoader) throws Exception {
     this.initializr = initializr;
     this.resourceLoader = resourceLoader;
+
+    FreeMarkerConfigurationFactory factory = new FreeMarkerConfigurationFactory();
+    factory.setTemplateLoaderPaths("classpath:/initializr/templates", "file:./templates");
+    this.freemarkerConfiguration = factory.createConfiguration();
   }
 
   public void generateProject(ProjectConfiguration projectConfiguration, OutputStream os)
-    throws Exception {
+      throws Exception {
     ZipOutputStream zos = new ZipOutputStream(os);
 
     appendPom(projectConfiguration, zos);
     if (projectConfiguration.getSourceLanguage() == SOURCE_LANGUAGE.KOTLIN
-      || projectConfiguration.getSourceLanguage() == SOURCE_LANGUAGE.JAVA_KOTLIN) {
+        || projectConfiguration.getSourceLanguage() == SOURCE_LANGUAGE.JAVA_KOTLIN) {
       appendKotlinMain(projectConfiguration, zos);
     } else {
       appendJavaMain(projectConfiguration, zos);
     }
-    appendProperties(projectConfiguration, zos);
-    appendMessages(projectConfiguration, zos);
-    appendChangeLog(projectConfiguration, zos);
+
+    appendInitializrFiles(projectConfiguration, zos);
 
     zos.close();
   }
 
-  private void appendChangeLog(ProjectConfiguration projectConfiguration, ZipOutputStream zos)
-    throws IOException {
-    Resource resource = this.resourceLoader
-      .getResource("classpath:/changelog/db.changelog-master.yaml");
-
-    ZipEntry e = new ZipEntry("src/main/resources/db/changelog/db.changelog-master.yaml");
-    zos.putNextEntry(e);
-    Streams.copy(resource.getInputStream(), zos, false);
-  }
-
   private void appendPom(ProjectConfiguration projectConfiguration, ZipOutputStream zos)
-    throws IOException {
+      throws IOException {
     Version version = initializr.findVersion(projectConfiguration.getVersion()).get();
 
     Model model = new Model();
@@ -121,18 +103,18 @@ public class ProjectGenerator {
     model.setDependencyManagement(dependencyManagement);
 
     model.setDependencies(
-      projectConfiguration
-        .getDependencies()
-        .stream()
-        .map(id -> initializr.findDependency(id))
-        .filter(o -> o.isPresent()).map(o -> o.get()).map(d -> {
-        org.apache.maven.model.Dependency dependency = new org.apache.maven.model.Dependency();
-        dependency.setGroupId(d.getGroupId());
-        dependency.setArtifactId(d.getArtifactId());
-        dependency.setVersion("${blossom.version}");
-        return dependency;
-      })
-        .collect(Collectors.toList())
+        projectConfiguration
+            .getDependencies()
+            .stream()
+            .map(id -> initializr.findDependency(id))
+            .filter(o -> o.isPresent()).map(o -> o.get()).map(d -> {
+          org.apache.maven.model.Dependency dependency = new org.apache.maven.model.Dependency();
+          dependency.setGroupId(d.getGroupId());
+          dependency.setArtifactId(d.getArtifactId());
+          dependency.setVersion(d.getVersion() == null ? "${blossom.version}" : d.getVersion());
+          return dependency;
+        })
+            .collect(Collectors.toList())
     );
 
     if (PACKAGING_MODE.WAR.equals(projectConfiguration.getPackagingMode())) {
@@ -347,8 +329,8 @@ public class ProjectGenerator {
   }
 
   private void appendJavaMain(ProjectConfiguration projectConfiguration, ZipOutputStream zos)
-    throws IOException,
-    JClassAlreadyExistsException {
+      throws IOException,
+      JClassAlreadyExistsException {
     JCodeModel jc = new JCodeModel();
     JDefinedClass clazz = jc._class(projectConfiguration.getPackageName() + ".Application");
 
@@ -365,45 +347,45 @@ public class ProjectGenerator {
     JVar varargs = main.varParam(jc.ref(String.class), "args");
 
     main.body().add(
-      jc._ref(SpringApplication.class).boxify().staticInvoke("run").arg(clazz.dotclass())
-        .arg(varargs));
+        jc._ref(SpringApplication.class).boxify().staticInvoke("run").arg(clazz.dotclass())
+            .arg(varargs));
 
     jc.build(new CustomZipCodeWriter(zos));
   }
 
   private void appendKotlinMain(ProjectConfiguration projectConfiguration, ZipOutputStream zos)
-    throws IOException {
+      throws IOException {
     TypeSpec.Builder applicationClassBuilder = TypeSpec.classBuilder("Application")
-      .addAnnotation(AnnotationSpec.builder(SpringBootApplication.class).build())
-      .addModifiers(KModifier.OPEN);
+        .addAnnotation(AnnotationSpec.builder(SpringBootApplication.class).build())
+        .addModifiers(KModifier.OPEN);
 
     if (projectConfiguration.getPackagingMode() == PACKAGING_MODE.WAR) {
       applicationClassBuilder.superclass(SpringBootServletInitializer.class);
 
       FunSpec configure = FunSpec
-        .builder("configure")
-        .addParameter(
-          "application",
-          ClassName.bestGuess(SpringApplicationBuilder.class.getName()))
-        .returns(ClassName.bestGuess(SpringApplicationBuilder.class.getName()))
-        .addModifiers(KModifier.OVERRIDE)
-        .addCode("return application.sources(Application::class.java)")
-        .build();
+          .builder("configure")
+          .addParameter(
+              "application",
+              ClassName.bestGuess(SpringApplicationBuilder.class.getName()))
+          .returns(ClassName.bestGuess(SpringApplicationBuilder.class.getName()))
+          .addModifiers(KModifier.OVERRIDE)
+          .addCode("return application.sources(Application::class.java)")
+          .build();
       applicationClassBuilder.addFunction(configure);
     }
 
     FunSpec mainFun = FunSpec.builder("main")
-      .addParameter(ParameterSpec.builder("args", new ClassName("", "Array<String>")).build())
-      .addStatement("%T.run(Application::class.java, *args)", SpringApplication.class)
-      .build();
+        .addParameter(ParameterSpec.builder("args", new ClassName("", "Array<String>")).build())
+        .addStatement("%T.run(Application::class.java, *args)", SpringApplication.class)
+        .build();
 
     FileSpec file = FileSpec.builder(projectConfiguration.getPackageName(), "Application")
-      .addType(applicationClassBuilder.build())
-      .addFunction(mainFun)
-      .build();
+        .addType(applicationClassBuilder.build())
+        .addFunction(mainFun)
+        .build();
 
     String name =
-      "src/main/kotlin/" + toDirName(projectConfiguration.getPackageName()) + "Application.kt";
+        "src/main/kotlin/" + toDirName(projectConfiguration.getPackageName()) + "Application.kt";
     zos.putNextEntry(new ZipEntry(name));
 
     String fileContent = file.toString();
@@ -412,17 +394,20 @@ public class ProjectGenerator {
 
   }
 
-  private void appendProperties(ProjectConfiguration projectConfiguration, ZipOutputStream zos)
-    throws IOException {
-    ZipEntry e = new ZipEntry("src/main/resources/application.properties");
-    zos.putNextEntry(e);
-  }
-
-
-  private void appendMessages(ProjectConfiguration projectConfiguration, ZipOutputStream zos)
-    throws IOException {
-    ZipEntry e = new ZipEntry("src/main/resources/messages.properties");
-    zos.putNextEntry(e);
+  private void appendInitializrFiles(ProjectConfiguration projectConfiguration, ZipOutputStream zos) throws Exception {
+    for (InitializrFile file : initializr.getInitializrFiles()) {
+      Resource resource = this.resourceLoader.getResource(file.getOriginalPath());
+      ZipEntry e = new ZipEntry(file.getTargetPath());
+      zos.putNextEntry(e);
+      if (file.getOriginalPath().endsWith(".ftl")) {
+        Map<String, Object> ctx = new HashMap<>();
+        ctx.put("projectConfiguration", projectConfiguration);
+        String a = resource.getFile().getPath().split("/templates/")[1];
+        freemarkerConfiguration.getTemplate(a).process(ctx, new OutputStreamWriter(zos));
+      } else {
+        Streams.copy(resource.getInputStream(), zos, false);
+      }
+    }
   }
 
   private static class CustomZipCodeWriter extends CodeWriter {

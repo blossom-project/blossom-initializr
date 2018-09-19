@@ -1,4 +1,4 @@
-package com.blossomproject.showcase.initializr.model;
+package com.blossomproject.showcase.initializr.model.properties;
 
 import java.util.List;
 

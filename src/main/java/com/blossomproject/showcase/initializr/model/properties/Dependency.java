@@ -1,4 +1,4 @@
-package com.blossomproject.showcase.initializr.model;
+package com.blossomproject.showcase.initializr.model.properties;
 
 /**
  * Created by Maël Gargadennnec on 14/06/2017.
@@ -10,6 +10,10 @@ public class Dependency {
 
   private String groupId;
   private String artifactId;
+  private String version;
+
+  private boolean isDefault;
+  private boolean isRequired;
 
   public String getId() {
     return id;
@@ -51,4 +55,27 @@ public class Dependency {
     this.artifactId = artifactId;
   }
 
+  public String getVersion() {
+    return version;
+  }
+
+  public void setVersion(String version) {
+    this.version = version;
+  }
+
+  public boolean isDefault() {
+    return isDefault;
+  }
+
+  public void setDefault(boolean aDefault) {
+    isDefault = aDefault;
+  }
+
+  public boolean isRequired() {
+    return isRequired;
+  }
+
+  public void setRequired(boolean required) {
+    isRequired = required;
+  }
 }

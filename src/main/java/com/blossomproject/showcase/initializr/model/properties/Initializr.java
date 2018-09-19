@@ -1,8 +1,9 @@
-package com.blossomproject.showcase.initializr.model;
+package com.blossomproject.showcase.initializr.model.properties;
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.util.List;
 import java.util.Optional;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * Created by Maël Gargadennnec on 14/06/2017.
@@ -11,6 +12,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class Initializr {
   private List<Version> versions;
   private List<Group> groups;
+  private List<InitializrFile> initializrFiles;
+  private String defaultPackagingMode;
 
   public List<Version> getVersions() {
     return versions;
@@ -26,6 +29,22 @@ public class Initializr {
 
   public void setGroups(List<Group> groups) {
     this.groups = groups;
+  }
+
+  public List<InitializrFile> getInitializrFiles() {
+    return initializrFiles;
+  }
+
+  public void setInitializrFiles(List<InitializrFile> initializrFiles) {
+    this.initializrFiles = initializrFiles;
+  }
+
+  public String getDefaultPackagingMode() {
+    return defaultPackagingMode;
+  }
+
+  public void setDefaultPackagingMode(String defaultPackagingMode) {
+    this.defaultPackagingMode = defaultPackagingMode;
   }
 
   public Optional<Version> findVersion(String blossomVersion) {

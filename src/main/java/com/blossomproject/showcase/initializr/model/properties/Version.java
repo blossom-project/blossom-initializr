@@ -1,4 +1,4 @@
-package com.blossomproject.showcase.initializr.model;
+package com.blossomproject.showcase.initializr.model.properties;
 
 /**
  * Created by Maël Gargadennnec on 14/06/2017.

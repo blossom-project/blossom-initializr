@@ -37,7 +37,7 @@
             <div class="col-sm-10">
               <select class="form-control" name="packagingMode">
                 <#list packagingModes as packagingMode>
-                  <option value="${packagingMode}">${packagingMode}</option>
+                  <option value="${packagingMode}" <#if packagingMode == initializr.defaultPackagingMode>selected="selected"</#if>>${packagingMode}</option>
                 </#list>
               </select>
             </div>
@@ -85,7 +85,7 @@
             <#list group.dependencies as dependency>
               <div class="form-group">
                 <div class="col-sm-12">
-                  <input type="checkbox" value="${dependency.id}" name="dependencies" <#if project.dependencies?seq_contains(dependency.id)>checked="checked"</#if>/>
+                  <input type="checkbox" value="${dependency.id}" name="dependencies" <#if project.dependencies?seq_contains(dependency.id) || dependency.required>checked="checked"</#if> <#if dependency.required>disabled="disabled"</#if>/>
                   ${dependency.name}
                   <p class="text-muted text-normal">${dependency.description}</p>
                 </div>
