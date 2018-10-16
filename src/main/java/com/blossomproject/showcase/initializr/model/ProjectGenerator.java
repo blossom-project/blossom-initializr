@@ -263,6 +263,14 @@ public class ProjectGenerator {
       kotlinPlugin.setExecutions(executions);
     }
 
+    {
+      Xpp3Dom configuration = new Xpp3Dom("configuration");
+      Xpp3Dom jvmTarget = new Xpp3Dom("jvmTarget");
+      jvmTarget.setValue("1.8");
+      configuration.addChild(jvmTarget);
+      kotlinPlugin.setConfiguration(configuration);
+    }
+
     pomModel.getBuild().addPlugin(kotlinPlugin);
 
     Plugin mavenCompilePlugin = new Plugin();
@@ -322,10 +330,16 @@ public class ProjectGenerator {
     executions.add(testCompileExecution);
     kotlinPlugin.setExecutions(executions);
 
+    Xpp3Dom configuration = new Xpp3Dom("configuration");
+    Xpp3Dom jvmTarget = new Xpp3Dom("jvmTarget");
+    jvmTarget.setValue("1.8");
+    configuration.addChild(jvmTarget);
+    kotlinPlugin.setConfiguration(configuration);
+
     pomModel.getBuild().addPlugin(kotlinPlugin);
 
     pomModel.getBuild().setSourceDirectory("${project.basedir}/src/main/kotlin");
-    pomModel.getBuild().setTestSourceDirectory("${project.basedir}/src/main/kotlin");
+    pomModel.getBuild().setTestSourceDirectory("${project.basedir}/src/test/kotlin");
   }
 
   private void appendJavaMain(ProjectConfiguration projectConfiguration, ZipOutputStream zos)
