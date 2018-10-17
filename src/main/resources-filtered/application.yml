@@ -8,11 +8,11 @@ initializr:
   versions:
   - blossom: 1.1.0
     springboot: 2.0.4.RELEASE
-    kotlin: 1.2.70
+    kotlin: 1.2.71
     maven-war-plugin: 3.2.2
   - blossom: 1.2.0-SNAPSHOT
     springboot: 2.0.4.RELEASE
-    kotlin: 1.2.70
+    kotlin: 1.2.71
     maven-war-plugin: 3.2.2
   - blossom: 1.0.0
     springboot: 2.0.1.RELEASE
