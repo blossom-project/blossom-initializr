@@ -76,4 +76,6 @@ initializr:
     target-path: "mvnw.cmd"
   - original-path: "classpath:/initializr/templates/mvn/wrapper/maven-wrapper.properties.ftl"
     target-path: ".mvn/wrapper/maven-wrapper.properties"
+  - original-path: "classpath:/initializr/templates/gitignore"
+    target-path: ".gitignore"
 
