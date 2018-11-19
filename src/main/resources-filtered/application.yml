@@ -6,13 +6,16 @@ initializr:
   default-packaging-mode: JAR
 
   versions:
-  - blossom: 1.1.2
+  - blossom: 1.1.3
     springboot: 2.0.6.RELEASE
-    kotlin: 1.2.71
+    kotlin: 1.3.0
+    maven-version: 3.5.4
     maven-war-plugin: 3.2.2
+
   - blossom: 1.2.0-SNAPSHOT
     springboot: 2.0.6.RELEASE
-    kotlin: 1.2.71
+    kotlin: 1.3.0
+    maven-version: 3.5.4
     maven-war-plugin: 3.2.2
 
   groups:
@@ -67,3 +70,12 @@ initializr:
     target-path: "src/main/resources/application.yml"
   - original-path: "classpath:/initializr/templates/messages.properties"
     target-path: "src/main/resources/messages.properties"
+  - original-path: "classpath:/initializr/templates/mvnw"
+    target-path: "mvnw"
+  - original-path: "classpath:/initializr/templates/mvnw.cmd"
+    target-path: "mvnw.cmd"
+  - original-path: "classpath:/initializr/templates/mvn/wrapper/maven-wrapper.properties.ftl"
+    target-path: ".mvn/wrapper/maven-wrapper.properties"
+  - original-path: "classpath:/initializr/templates/gitignore"
+    target-path: ".gitignore"
+

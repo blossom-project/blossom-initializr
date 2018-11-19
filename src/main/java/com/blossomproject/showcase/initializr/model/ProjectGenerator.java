@@ -50,8 +50,9 @@ public class ProjectGenerator {
   public void generateProject(ProjectConfiguration projectConfiguration, OutputStream os)
       throws Exception {
     ZipOutputStream zos = new ZipOutputStream(os);
+    Version version = initializr.findVersion(projectConfiguration.getVersion()).get();
 
-    appendPom(projectConfiguration, zos);
+    appendPom(projectConfiguration, version, zos);
     if (projectConfiguration.getSourceLanguage() == SOURCE_LANGUAGE.KOTLIN
         || projectConfiguration.getSourceLanguage() == SOURCE_LANGUAGE.JAVA_KOTLIN) {
       appendKotlinMain(projectConfiguration, zos);
@@ -59,14 +60,13 @@ public class ProjectGenerator {
       appendJavaMain(projectConfiguration, zos);
     }
 
-    appendInitializrFiles(projectConfiguration, zos);
+    appendInitializrFiles(projectConfiguration, version, zos);
 
     zos.close();
   }
 
-  private void appendPom(ProjectConfiguration projectConfiguration, ZipOutputStream zos)
+  private void appendPom(ProjectConfiguration projectConfiguration, Version version, ZipOutputStream zos)
       throws IOException {
-    Version version = initializr.findVersion(projectConfiguration.getVersion()).get();
 
     Model model = new Model();
     model.setModelVersion("4.0.0");
@@ -408,7 +408,7 @@ public class ProjectGenerator {
 
   }
 
-  private void appendInitializrFiles(ProjectConfiguration projectConfiguration, ZipOutputStream zos) throws Exception {
+  private void appendInitializrFiles(ProjectConfiguration projectConfiguration, Version version, ZipOutputStream zos) throws Exception {
     for (InitializrFile file : initializr.getInitializrFiles()) {
       Resource resource = this.resourceLoader.getResource(file.getOriginalPath());
       ZipEntry e = new ZipEntry(file.getTargetPath());
@@ -416,6 +416,7 @@ public class ProjectGenerator {
       if (file.getOriginalPath().endsWith(".ftl")) {
         Map<String, Object> ctx = new HashMap<>();
         ctx.put("projectConfiguration", projectConfiguration);
+        ctx.put("version", version);
         String a = resource.getFile().getPath().split("/templates/")[1];
         freemarkerConfiguration.getTemplate(a).process(ctx, new OutputStreamWriter(zos));
       } else {
