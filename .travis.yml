@@ -1,6 +1,7 @@
+dist: xenial
 language: java
 jdk:
-- oraclejdk8
+- openjdk11
 sudo: false
 after_success:
 - mvn clean test org.jacoco:jacoco-maven-plugin:report org.eluder.coveralls:coveralls-maven-plugin:report
