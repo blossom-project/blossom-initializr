@@ -6,15 +6,15 @@ initializr:
   default-packaging-mode: JAR
 
   versions:
-  - blossom: 1.2.1
-    springboot: 2.1.4.RELEASE
-    kotlin: 1.3.50
+  - blossom: 1.3.0
+    springboot: 2.1.9.RELEASE
+    kotlin: 1.3.72
     maven-version: 3.6.0
     maven-war-plugin: 3.2.2
 
-  - blossom: 1.3.0-SNAPSHOT
-    springboot: 2.1.8.RELEASE
-    kotlin: 1.3.50
+  - blossom: 1.4.0-SNAPSHOT
+    springboot: 2.1.13.RELEASE
+    kotlin: 1.3.72
     maven-version: 3.6.0
     maven-war-plugin: 3.2.2
 
